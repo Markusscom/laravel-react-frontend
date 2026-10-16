@@ -3,7 +3,7 @@ import { AuthProvider } from './context/AuthContext';
 import Login from './components/Login';
 import PostList from './components/PostList';
 
-function App() {
+export default function App() {
   return (
     <AuthProvider>
       <Router>
@@ -15,5 +15,3 @@ function App() {
     </AuthProvider>
   );
 }
-
-export default App;

@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react';
 import api from '../services/api';
 
-const PostList = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+export interface Post {
+  id: number;
+  title: string;
+  content: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export default function PostList() {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    api.get('/posts')
+    api.get<Post[]>('/posts')
       .then(res => setPosts(res.data))
       .catch(err => console.error('Neizdevās ielādēt ierakstus', err))
       .finally(() => setLoading(false));
@@ -25,6 +33,4 @@ const PostList = () => {
       ))}
     </div>
   );
-};
-
-export default PostList;
+}
